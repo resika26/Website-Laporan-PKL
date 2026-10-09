@@ -215,7 +215,7 @@ export default function HalamanAbsenSiswa() {
       {statusHariIni?.penempatan && (
         <div className="bg-gray-50 border rounded-lg p-3 text-xs space-y-1">
           <div>
-            <b>Tempat PKL:</b> {statusHariIni.penempatan.tempat}
+            <b>DU/DI:</b> {statusHariIni.penempatan.tempat}
           </div>
           <div>
             <b>Batas Radius:</b> {statusHariIni.penempatan.radiusMeter} meter

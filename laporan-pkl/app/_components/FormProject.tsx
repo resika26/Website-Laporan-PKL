@@ -168,7 +168,7 @@ export default function FormProject({ project }: { project?: ProjectFormData }) 
           {sibuk ? "Menyimpan..." : "Simpan draf"}
         </button>
         <button type="button" onClick={() => kirim("ajukan")} disabled={sibuk} className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-3 py-1.5 text-sm disabled:opacity-50">
-          {sibuk ? "Mengirim..." : "Ajukan ke guru"}
+          {sibuk ? "Mengirim..." : "Ajukan ke Pembimbing sekolah"}
         </button>
         <button type="button" onClick={() => setTerbuka(false)} disabled={sibuk} className="border rounded px-3 py-1.5 text-sm">
           Batal

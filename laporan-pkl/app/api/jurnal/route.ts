@@ -143,6 +143,6 @@ export async function POST(req: Request) {
 
   return NextResponse.json({
     ok: true,
-    pesan: kirim ? "Jurnal terkirim ke supervisor." : "Draf tersimpan.",
+    pesan: kirim ? "Jurnal terkirim ke Pembimbing DU/DI." : "Draf tersimpan.",
   });
 }

@@ -67,7 +67,7 @@ export default function PersetujuanMassal({ items }: { items: Item[] }) {
     <fieldset className="border rounded p-3 space-y-2">
       <legend className="px-1 text-sm font-semibold">Persetujuan massal</legend>
       <p className="text-xs text-gray-600">
-        Pilih item tahap guru yang akan disetujui. Maksimal 100 item per proses.
+        Pilih item tahap Pembimbing sekolah yang akan disetujui. Maksimal 100 item per proses.
       </p>
       {items.length > ditampilkan.length && (
         <p className="text-xs text-amber-800">Daftar pilihan menampilkan 100 item pertama; sisanya dapat diproses pada batch berikutnya.</p>

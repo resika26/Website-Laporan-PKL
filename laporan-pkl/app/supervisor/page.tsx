@@ -8,7 +8,7 @@ export default async function SupervisorPage() {
   return (
     <KerangkaHalaman peran="SUPERVISOR" nama={session.user.name}>
       <main className="p-6 max-w-2xl mx-auto space-y-6">
-          <h1 className="text-xl font-bold">Verifikasi Supervisor</h1>
+          <h1 className="text-xl font-bold">Verifikasi Pembimbing DU/DI</h1>
         <AntreanVerifikasi tahap="SUPERVISOR" userId={session.user.id} />
       </main>
     </KerangkaHalaman>

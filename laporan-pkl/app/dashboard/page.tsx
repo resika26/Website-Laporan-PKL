@@ -45,7 +45,7 @@ export default async function DashboardPage() {
           >
             <div className="font-bold text-hijau-aksen">Absen Masuk & Pulang</div>
             <p className="text-xs text-gray-500 mt-1">
-              Ambil foto langsung kamera dan verifikasi lokasi GPS tempat PKL.
+              Ambil foto langsung kamera dan verifikasi lokasi GPS DU/DI.
             </p>
           </Link>
 

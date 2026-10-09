@@ -153,6 +153,6 @@ export async function POST(req: Request) {
 
   return NextResponse.json({
     ok: true,
-    pesan: aksi === "ajukan" ? "Project diajukan kepada guru." : "Draf project tersimpan.",
+    pesan: aksi === "ajukan" ? "Project diajukan kepada Pembimbing sekolah." : "Draf project tersimpan.",
   });
 }

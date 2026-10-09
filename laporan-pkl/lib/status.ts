@@ -1,7 +1,7 @@
 export const LABEL_STATUS: Record<string, { teks: string; kelas: string }> = {
   DRAF: { teks: "Draf", kelas: "bg-gray-100 text-gray-700" },
-  MENUNGGU_SUPERVISOR: { teks: "Menunggu supervisor", kelas: "bg-yellow-100 text-yellow-800" },
-  MENUNGGU_GURU: { teks: "Menunggu guru", kelas: "bg-yellow-100 text-yellow-800" },
+  MENUNGGU_SUPERVISOR: { teks: "Menunggu Pembimbing DU/DI", kelas: "bg-yellow-100 text-yellow-800" },
+  MENUNGGU_GURU: { teks: "Menunggu Pembimbing sekolah", kelas: "bg-yellow-100 text-yellow-800" },
   DITOLAK: { teks: "Perlu revisi", kelas: "bg-red-100 text-red-700" },
   DISETUJUI: { teks: "Disetujui", kelas: "bg-green-100 text-green-700" },
 };

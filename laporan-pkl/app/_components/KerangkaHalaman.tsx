@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import TombolKeluar from "./TombolKeluar";
 import MenuNav from "./MenuNav";
@@ -20,7 +21,15 @@ export default function KerangkaHalaman({
     <div className="min-h-screen flex flex-col">
       <header className="border-b bg-surface">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:gap-5">
-          <Link href={tujuanMerek} className="shrink-0 text-base font-bold text-hijau-aksen">
+          <Link href={tujuanMerek} className="flex shrink-0 items-center gap-2 text-base font-bold text-hijau-aksen">
+            <Image
+              src="/brand/logo-smkn1pacitan.webp"
+              alt="Logo SMK Negeri 1 Pacitan"
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain"
+              priority
+            />
             Laporan PKL Digital
           </Link>
           <div className="min-w-0 flex-1">

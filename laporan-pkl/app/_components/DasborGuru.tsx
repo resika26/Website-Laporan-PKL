@@ -28,9 +28,9 @@ function Indikator({
       : status === "DITOLAK"
         ? "Ditolak"
         : status === "MENUNGGU_SUPERVISOR"
-          ? "Menunggu supervisor"
+          ? "Menunggu Pembimbing DU/DI"
           : status === "MENUNGGU_GURU"
-            ? "Menunggu guru"
+            ? "Menunggu Pembimbing sekolah"
             : status === "DRAF"
               ? "Draf"
               : kosong ?? "Belum ada";

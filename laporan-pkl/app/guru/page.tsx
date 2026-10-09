@@ -10,7 +10,7 @@ export default async function GuruPage() {
   return (
     <KerangkaHalaman peran="GURU" nama={session.user.name}>
       <main className="p-6 max-w-2xl mx-auto space-y-6">
-        <h1 className="text-xl font-bold">Verifikasi Guru</h1>
+        <h1 className="text-xl font-bold">Verifikasi Pembimbing sekolah</h1>
         <DasborGuru userId={session.user.id} />
         <AntreanProjectGuru userId={session.user.id} />
         <AntreanVerifikasi tahap="GURU" userId={session.user.id} />

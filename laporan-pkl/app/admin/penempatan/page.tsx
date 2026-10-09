@@ -76,15 +76,15 @@ export default async function PenempatanPage({
           {siswaBelum.map((s) => <option key={s.id} value={s.id}>{s.nama}</option>)}
         </select>
         <select name="tempatPklId" required className={kelas} defaultValue="">
-          <option value="" disabled>Pilih tempat PKL</option>
+          <option value="" disabled>Pilih DU/DI</option>
           {tempat.map((t) => <option key={t.id} value={t.id}>{t.nama}</option>)}
         </select>
         <select name="guruId" required className={kelas} defaultValue="">
-          <option value="" disabled>Pilih guru pembimbing</option>
+          <option value="" disabled>Pilih Pembimbing sekolah</option>
           {guru.map((g) => <option key={g.id} value={g.id}>{g.nama}</option>)}
         </select>
         <select name="supervisorId" required className={kelas} defaultValue="">
-          <option value="" disabled>Pilih supervisor instansi</option>
+          <option value="" disabled>Pilih Pembimbing DU/DI</option>
           {supervisor.map((s) => <option key={s.id} value={s.id}>{s.nama}</option>)}
         </select>
         <label className="block text-sm">Tanggal mulai
@@ -102,7 +102,7 @@ export default async function PenempatanPage({
           <div key={p.id} className="border rounded p-3 text-sm">
             <b>{p.siswa.nama}</b> → {p.tempatPkl.nama}
             <div className="text-gray-500">
-              Guru: {p.guru.nama} · Supervisor: {p.supervisor.nama}
+              Pembimbing sekolah: {p.guru.nama} · Pembimbing DU/DI: {p.supervisor.nama}
               <br />
               {tgl(p.tanggalMulai)} s/d {tgl(p.tanggalSelesai)}
             </div>

@@ -170,7 +170,7 @@ export default async function AntreanVerifikasi({
 
                 {tahap === "GURU" && item.disetujuiSupervisorOleh && (
                   <p className="text-green-700">
-                    Disetujui supervisor {item.disetujuiSupervisorOleh.nama} · {waktu(item.disetujuiSupervisorPada)}
+                    Disetujui Pembimbing DU/DI {item.disetujuiSupervisorOleh.nama} · {waktu(item.disetujuiSupervisorPada)}
                   </p>
                 )}
                 <TombolKeputusan tipe="absensi" id={item.id} />
@@ -200,7 +200,7 @@ export default async function AntreanVerifikasi({
               </div>
               {tahap === "GURU" && item.disetujuiSupervisorOleh && (
                 <p className="text-green-700">
-                  Disetujui supervisor {item.disetujuiSupervisorOleh.nama} · {waktu(item.disetujuiSupervisorPada)}
+                  Disetujui Pembimbing DU/DI {item.disetujuiSupervisorOleh.nama} · {waktu(item.disetujuiSupervisorPada)}
                 </p>
               )}
               <TombolKeputusan tipe="jurnal" id={item.id} />

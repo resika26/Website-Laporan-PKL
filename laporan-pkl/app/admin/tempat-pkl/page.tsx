@@ -42,11 +42,11 @@ export default async function TempatPklPage({
   return (
     <main className="p-6 max-w-3xl mx-auto space-y-6">
       <a href="/admin" className="text-sm text-biru">← Kembali</a>
-      <h1 className="text-xl font-bold">Tempat PKL</h1>
+      <h1 className="text-xl font-bold">DU/DI</h1>
       {pesan && <p className="border rounded p-3 text-sm">{pesan}</p>}
 
       <form action={buatTempat} className="border rounded-xl p-4 space-y-3">
-        <h2 className="font-semibold">Tambah tempat PKL</h2>
+        <h2 className="font-semibold">Tambah DU/DI</h2>
         <input name="nama" placeholder="Nama perusahaan/instansi" required className="w-full border rounded p-2" />
         <input name="alamat" placeholder="Alamat" required className="w-full border rounded p-2" />
         <input name="koordinat" placeholder="Koordinat dari Google Maps, contoh: -6.9667, 110.4167" required className="w-full border rounded p-2" />
@@ -56,7 +56,7 @@ export default async function TempatPklPage({
       </form>
 
       <section className="space-y-2">
-        <h2 className="font-semibold">Daftar tempat ({daftar.length})</h2>
+        <h2 className="font-semibold">Daftar DU/DI ({daftar.length})</h2>
         {daftar.map((t) => (
           <div key={t.id} className="border rounded p-3 text-sm">
             <b>{t.nama}</b>

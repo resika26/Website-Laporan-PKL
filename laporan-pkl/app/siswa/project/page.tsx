@@ -6,7 +6,7 @@ import FormProject from "@/app/_components/FormProject";
 
 const statusProject: Record<string, { teks: string; kelas: string }> = {
   DRAF: { teks: "Draf", kelas: "bg-gray-100 text-gray-700" },
-  MENUNGGU: { teks: "Menunggu persetujuan guru", kelas: "bg-amber-100 text-amber-800" },
+  MENUNGGU: { teks: "Menunggu persetujuan Pembimbing sekolah", kelas: "bg-amber-100 text-amber-800" },
   TAMPIL: { teks: "Disetujui dan tampil", kelas: "bg-green-100 text-green-800" },
   DITOLAK: { teks: "Perlu revisi", kelas: "bg-red-100 text-red-700" },
 };
@@ -28,7 +28,7 @@ export default async function ProjectSiswaPage() {
       </div>
       <header>
         <h1 className="text-xl font-bold">Project Saya</h1>
-        <p className="text-sm text-gray-600">Project yang diajukan menunggu persetujuan guru sebelum tampil di galeri.</p>
+        <p className="text-sm text-gray-600">Project yang diajukan menunggu persetujuan Pembimbing sekolah sebelum tampil di galeri.</p>
       </header>
 
       <FormProject />

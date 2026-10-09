@@ -71,7 +71,7 @@ export default async function HalamanIzinSakit() {
           </p>
           {hariIni.catatan && (
             <p className="text-red-700 text-xs mt-1">
-              Catatan supervisor/guru: {hariIni.catatan}
+              Catatan Pembimbing DU/DI/Pembimbing sekolah: {hariIni.catatan}
             </p>
           )}
         </div>

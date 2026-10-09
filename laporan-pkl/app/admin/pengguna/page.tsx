@@ -30,7 +30,7 @@ async function buatAkun(formData: FormData) {
       const noHp = String(formData.get("noHp") ?? "").trim();
 
       if (!nis || !kelas || !jurusan) {
-        redirect("/admin/pengguna?pesan=NIS,+kelas,+dan+jurusan+wajib+diisi+untuk+siswa");
+        redirect("/admin/pengguna?pesan=NIS,+kelas,+dan+Paket+Keahlian+wajib+diisi+untuk+siswa");
       }
 
       await prisma.pengguna.create({
@@ -79,8 +79,8 @@ export default async function KelolaPenggunaPage({
         <input name="sandi" type="password" placeholder="Kata sandi awal (min. 8 karakter)" required className="w-full border rounded p-2" />
         <select name="peran" className="w-full border rounded p-2" defaultValue="SISWA">
           <option value="SISWA">Siswa</option>
-          <option value="GURU">Guru pembimbing</option>
-          <option value="SUPERVISOR">Supervisor instansi</option>
+          <option value="GURU">Pembimbing sekolah</option>
+          <option value="SUPERVISOR">Pembimbing DU/DI</option>
           <option value="ADMIN">Admin</option>
         </select>
 
@@ -88,7 +88,7 @@ export default async function KelolaPenggunaPage({
           <legend className="text-sm px-1">Khusus siswa (abaikan untuk peran lain)</legend>
           <input name="nis" placeholder="NIS" className="w-full border rounded p-2" />
           <input name="kelas" placeholder="Kelas, misalnya XII RPL 1" className="w-full border rounded p-2" />
-          <input name="jurusan" placeholder="Jurusan" defaultValue="Rekayasa Perangkat Lunak" className="w-full border rounded p-2" />
+          <input name="jurusan" placeholder="Paket Keahlian" defaultValue="Rekayasa Perangkat Lunak" className="w-full border rounded p-2" />
           <input name="noHp" placeholder="No HP (opsional)" className="w-full border rounded p-2" />
         </fieldset>
 

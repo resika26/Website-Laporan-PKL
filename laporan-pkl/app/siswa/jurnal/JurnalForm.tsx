@@ -112,7 +112,7 @@ export default function JurnalForm({ tanggal, awal, saranTag, sisaFoto, jumlahFo
           Simpan draf
         </button>
         <button onClick={() => kirim("kirim")} disabled={sibuk} className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-4 py-2 disabled:opacity-50">
-          {sibuk ? "Memproses..." : "Kirim ke supervisor"}
+          {sibuk ? "Memproses..." : "Kirim ke Pembimbing DU/DI"}
         </button>
       </div>
 

@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
   if (body.items !== undefined) {
     if (peran !== "GURU" || keputusan !== "setuju")
-      return tolak("Persetujuan massal hanya tersedia untuk guru.", 403);
+      return tolak("Persetujuan massal hanya tersedia untuk Pembimbing sekolah.", 403);
     if (!Array.isArray(body.items) || body.items.length === 0 || body.items.length > 100)
       return tolak("Pilih 1 sampai 100 item untuk disetujui.");
 
@@ -161,7 +161,7 @@ export async function POST(req: Request) {
     ok: true,
     pesan: setuju
       ? supervisor
-        ? "Disetujui. Diteruskan ke guru."
+        ? "Disetujui. Diteruskan ke Pembimbing sekolah."
         : "Disetujui dan dikunci."
       : "Ditolak. Siswa akan melihat alasanmu.",
   });
