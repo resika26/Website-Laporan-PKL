@@ -1,4 +1,4 @@
-import { auth, signOut } from "@/auth";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
@@ -15,23 +15,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="p-6 max-w-lg mx-auto space-y-6">
-      <div className="flex justify-between items-center border-b pb-4">
-        <div>
-          <h1 className="text-xl font-bold">Halo, {session.user.name}</h1>
-          <p className="text-sm text-gray-500">Peran: {session.user.peran}</p>
-        </div>
-        <form
-          action={async () => {
-            "use server";
-            await signOut({ redirectTo: "/login" });
-          }}
-        >
-          <button className="border text-sm rounded px-3 py-1.5 hover:bg-gray-50">
-            Keluar
-          </button>
-        </form>
-      </div>
-
+      <h1 className="text-xl font-bold">Dashboard Siswa</h1>
       <div className="space-y-3">
         <h2 className="font-semibold text-gray-700">Menu Siswa</h2>
         <div className="grid gap-3">
