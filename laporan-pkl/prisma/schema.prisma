@@ -1,0 +1,273 @@
+// Skema database Laporan PKL (Prisma v7 + PostgreSQL/Supabase)
+// Sumber: kamus data di Dokumen Rancangan Laporan PKL (bab 6)
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DIRECT_URL")
+}
+
+// ---------- ENUM (pilihan nilai yang tetap) ----------
+
+enum Peran {
+  SISWA
+  GURU
+  SUPERVISOR
+  ADMIN
+}
+
+enum JenisAbsen {
+  HADIR
+  IZIN
+  SAKIT
+}
+
+enum StatusAbsensi {
+  MENUNGGU_SUPERVISOR
+  MENUNGGU_GURU
+  DISETUJUI
+  DITOLAK
+}
+
+enum StatusJurnal {
+  DRAF
+  MENUNGGU_SUPERVISOR
+  MENUNGGU_GURU
+  DITOLAK
+  DISETUJUI
+}
+
+enum StatusProject {
+  DRAF
+  MENUNGGU
+  TAMPIL
+  DITOLAK
+}
+
+// ---------- 1. PENGGUNA ----------
+
+model Pengguna {
+  id         String   @id @default(cuid())
+  nama       String
+  email      String   @unique
+  kataSandi  String // disimpan dalam bentuk hash, bukan teks asli
+  peran      Peran
+  aktif      Boolean  @default(true)
+  dibuatPada DateTime @default(now())
+
+  profilSiswa ProfilSiswa?
+
+  penempatanSebagaiSiswa      Penempatan[] @relation("PenempatanSiswa")
+  penempatanSebagaiGuru       Penempatan[] @relation("PenempatanGuru")
+  penempatanSebagaiSupervisor Penempatan[] @relation("PenempatanSupervisor")
+
+  absenDisetujuiSupervisor  Absensi[] @relation("AbsenSupervisor")
+  absenDisetujuiGuru        Absensi[] @relation("AbsenGuru")
+  jurnalDisetujuiSupervisor Jurnal[]  @relation("JurnalSupervisor")
+  jurnalDisetujuiGuru       Jurnal[]  @relation("JurnalGuru")
+
+  projectMilikSiswa  Project[] @relation("ProjectSiswa")
+  projectDisetujui   Project[] @relation("ProjectDisetujui")
+
+  @@map("pengguna")
+}
+
+// ---------- 2. PROFIL SISWA ----------
+
+model ProfilSiswa {
+  id         String   @id @default(cuid())
+  penggunaId String   @unique
+  pengguna   Pengguna @relation(fields: [penggunaId], references: [id], onDelete: Cascade)
+  nis        String   @unique
+  kelas      String
+  jurusan    String
+  noHp       String?
+
+  @@map("profil_siswa")
+}
+
+// ---------- 3. TEMPAT PKL ----------
+
+model TempatPkl {
+  id           String @id @default(cuid())
+  nama         String
+  alamat       String
+  latitude     Float
+  longitude    Float
+  radiusMeter  Int    @default(200) // batas jarak absen yang dianggap sah
+
+  penempatan Penempatan[]
+  hariLibur  HariLibur[]
+
+  @@map("tempat_pkl")
+}
+
+// ---------- 4. PENEMPATAN (tabel penghubung) ----------
+
+model Penempatan {
+  id             String   @id @default(cuid())
+  siswaId        String
+  guruId         String
+  supervisorId   String
+  tempatPklId    String
+  tanggalMulai   DateTime @db.Date
+  tanggalSelesai DateTime @db.Date
+
+  siswa      Pengguna  @relation("PenempatanSiswa", fields: [siswaId], references: [id])
+  guru       Pengguna  @relation("PenempatanGuru", fields: [guruId], references: [id])
+  supervisor Pengguna  @relation("PenempatanSupervisor", fields: [supervisorId], references: [id])
+  tempatPkl  TempatPkl @relation(fields: [tempatPklId], references: [id])
+
+  absensi Absensi[]
+  jurnal  Jurnal[]
+
+  @@index([siswaId])
+  @@index([guruId])
+  @@index([supervisorId])
+  @@map("penempatan")
+}
+
+// ---------- 5. HARI LIBUR ----------
+
+model HariLibur {
+  id          String     @id @default(cuid())
+  tanggal     DateTime   @db.Date
+  keterangan  String
+  tempatPklId String? // kosong = libur untuk semua tempat
+  tempatPkl   TempatPkl? @relation(fields: [tempatPklId], references: [id], onDelete: Cascade)
+
+  @@map("hari_libur")
+}
+
+// ---------- 6. ABSENSI ----------
+
+model Absensi {
+  id           String     @id @default(cuid())
+  penempatanId String
+  penempatan   Penempatan @relation(fields: [penempatanId], references: [id], onDelete: Cascade)
+  tanggal      DateTime   @db.Date
+  jenis        JenisAbsen
+
+  jamMasuk   DateTime?
+  fotoMasuk  String? // hanya nama/alamat file, foto disimpan di storage
+  latMasuk   Float?
+  lngMasuk   Float?
+  jamPulang  DateTime?
+  fotoPulang String?
+  latPulang  Float?
+  lngPulang  Float?
+
+  alasan    String? // untuk izin/sakit
+  fotoSurat String?
+
+  status  StatusAbsensi @default(MENUNGGU_SUPERVISOR)
+  catatan String?
+
+  disetujuiSupervisorOlehId String?
+  disetujuiSupervisorOleh   Pengguna? @relation("AbsenSupervisor", fields: [disetujuiSupervisorOlehId], references: [id])
+  disetujuiSupervisorPada   DateTime?
+  disetujuiGuruOlehId       String?
+  disetujuiGuruOleh         Pengguna? @relation("AbsenGuru", fields: [disetujuiGuruOlehId], references: [id])
+  disetujuiGuruPada         DateTime?
+
+  // satu penempatan hanya boleh punya satu absensi per tanggal
+  @@unique([penempatanId, tanggal])
+  @@map("absensi")
+}
+
+// ---------- 7. JURNAL ----------
+
+model Jurnal {
+  id           String       @id @default(cuid())
+  penempatanId String
+  penempatan   Penempatan   @relation(fields: [penempatanId], references: [id], onDelete: Cascade)
+  tanggal      DateTime     @db.Date
+  kegiatan     String       @db.Text
+  kendala      String?      @db.Text
+  pelajaran    String?      @db.Text
+  status       StatusJurnal @default(DRAF)
+  catatanRevisi String?     @db.Text
+
+  disetujuiSupervisorOlehId String?
+  disetujuiSupervisorOleh   Pengguna? @relation("JurnalSupervisor", fields: [disetujuiSupervisorOlehId], references: [id])
+  disetujuiSupervisorPada   DateTime?
+  disetujuiGuruOlehId       String?
+  disetujuiGuruOleh         Pengguna? @relation("JurnalGuru", fields: [disetujuiGuruOlehId], references: [id])
+  disetujuiGuruPada         DateTime?
+
+  lampiran LampiranJurnal[]
+  keahlian JurnalKeahlian[]
+
+  // satu penempatan hanya boleh punya satu jurnal per tanggal
+  @@unique([penempatanId, tanggal])
+  @@map("jurnal")
+}
+
+// ---------- 8. LAMPIRAN JURNAL ----------
+
+model LampiranJurnal {
+  id       String @id @default(cuid())
+  jurnalId String
+  jurnal   Jurnal @relation(fields: [jurnalId], references: [id], onDelete: Cascade)
+  fileFoto String
+
+  @@map("lampiran_jurnal")
+}
+
+// ---------- 9. KEAHLIAN dan JURNAL-KEAHLIAN ----------
+
+model Keahlian {
+  id    String @id @default(cuid())
+  nama  String @unique
+
+  jurnal JurnalKeahlian[]
+
+  @@map("keahlian")
+}
+
+model JurnalKeahlian {
+  jurnalId   String
+  keahlianId String
+  jurnal     Jurnal   @relation(fields: [jurnalId], references: [id], onDelete: Cascade)
+  keahlian   Keahlian @relation(fields: [keahlianId], references: [id], onDelete: Cascade)
+
+  @@id([jurnalId, keahlianId])
+  @@map("jurnal_keahlian")
+}
+
+// ---------- 10. PROJECT (galeri) ----------
+
+model Project {
+  id                String        @id @default(cuid())
+  siswaId           String
+  siswa             Pengguna      @relation("ProjectSiswa", fields: [siswaId], references: [id], onDelete: Cascade)
+  judul             String
+  deskripsi         String?       @db.Text
+  tautan            String?
+  rahasiaPerusahaan Boolean       @default(false)
+  status            StatusProject @default(DRAF)
+  catatan           String?       @db.Text
+  disetujuiOlehId   String?
+  disetujuiOleh     Pengguna?     @relation("ProjectDisetujui", fields: [disetujuiOlehId], references: [id])
+  dibuatPada        DateTime      @default(now())
+
+  gambar GambarProject[]
+
+  @@map("project")
+}
+
+// ---------- 11. GAMBAR PROJECT ----------
+
+model GambarProject {
+  id         String  @id @default(cuid())
+  projectId  String
+  project    Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  fileGambar String
+
+  @@map("gambar_project")
+}
