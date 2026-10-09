@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import TombolKeluar from "./TombolKeluar";
 import MenuNav from "./MenuNav";
+import PemilihTema from "./PemilihTema";
 import { MENU_PERAN, type PeranAplikasi } from "./navigasi";
 
 export default function KerangkaHalaman({
@@ -17,7 +18,7 @@ export default function KerangkaHalaman({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b bg-white">
+      <header className="border-b bg-surface">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:gap-5">
           <Link href={tujuanMerek} className="shrink-0 text-base font-bold text-hijau-aksen">
             Laporan PKL Digital
@@ -26,7 +27,8 @@ export default function KerangkaHalaman({
             <MenuNav peran={peran} />
           </div>
           <div className="flex shrink-0 items-center gap-3 text-sm">
-            <span className="max-w-40 truncate text-gray-600">{nama || "Tamu"}</span>
+            <PemilihTema />
+            <span className="max-w-40 truncate text-muted">{nama || "Tamu"}</span>
             {peran && <TombolKeluar />}
           </div>
         </div>

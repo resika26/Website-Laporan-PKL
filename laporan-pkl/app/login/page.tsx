@@ -1,6 +1,7 @@
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
+import PemilihTema from "@/app/_components/PemilihTema";
 
 export default async function LoginPage({
   searchParams,
@@ -24,8 +25,11 @@ export default async function LoginPage({
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
-      <form action={masuk} className="w-full max-w-sm space-y-4 border rounded-xl p-6">
+    <main className="relative min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="absolute right-4 top-4">
+        <PemilihTema />
+      </div>
+      <form action={masuk} className="w-full max-w-sm space-y-4 rounded-xl border bg-surface p-6">
         <h1 className="text-xl font-bold">Masuk Laporan PKL</h1>
         {error && <p className="text-red-600 text-sm">Email atau kata sandi salah.</p>}
         <input name="email" type="email" placeholder="Email" required className="w-full border rounded p-2" />

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
+import { KUNCI_TEMA } from "@/lib/tema";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -7,6 +9,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
+
+const skripTemaAwal = `try { const tema = localStorage.getItem("${KUNCI_TEMA}"); document.documentElement.dataset.theme = tema === "light" || tema === "dark" || tema === "system" ? tema : "system"; } catch { document.documentElement.dataset.theme = "system"; }`;
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +22,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="id"
       className={`${plusJakartaSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <Script id="tema-awal" strategy="beforeInteractive">
+          {skripTemaAwal}
+        </Script>
+      </head>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

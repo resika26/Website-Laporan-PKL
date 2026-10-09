@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
   --hijau-aksen: #009060;
   --hijau-tombol: #007a52;
   --biru: #0b6fb8;
@@ -9,18 +10,200 @@
   --teks: #10231d;
   --background: var(--latar);
   --foreground: var(--teks);
+  --surface: #ffffff;
+  --surface-muted: #f8faf9;
+  --text-muted: #5b6b64;
+  --text-subtle: #73817b;
+  --line: #dce5e0;
+  --input-placeholder: #66766f;
+  --status-neutral-bg: #f3f4f6;
+  --status-neutral-text: #374151;
+  --status-success-bg: #dcfce7;
+  --status-success-border: #4ade80;
+  --status-success-text: #166534;
+  --status-warning-bg: #fef3c7;
+  --status-warning-border: #fcd34d;
+  --status-warning-text: #92400e;
+  --status-danger-bg: #fee2e2;
+  --status-danger-border: #fca5a5;
+  --status-danger-text: #991b1b;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --hijau-aksen: #54d9aa;
+  --biru: #67b8f5;
+  --background: #101a15;
+  --foreground: #e7f1eb;
+  --surface: #19251f;
+  --surface-muted: #202e27;
+  --text-muted: #b4c5bc;
+  --text-subtle: #96aaa0;
+  --line: #34483d;
+  --input-placeholder: #a2b3aa;
+  --status-neutral-bg: #2a3830;
+  --status-neutral-text: #d5e0d9;
+  --status-success-bg: #173c2e;
+  --status-success-border: #368663;
+  --status-success-text: #a0e4bd;
+  --status-warning-bg: #44371c;
+  --status-warning-border: #8b6c2e;
+  --status-warning-text: #ffdc88;
+  --status-danger-bg: #472724;
+  --status-danger-border: #965048;
+  --status-danger-text: #ffb4aa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --hijau-aksen: #54d9aa;
+    --biru: #67b8f5;
+    --background: #101a15;
+    --foreground: #e7f1eb;
+    --surface: #19251f;
+    --surface-muted: #202e27;
+    --text-muted: #b4c5bc;
+    --text-subtle: #96aaa0;
+    --line: #34483d;
+    --input-placeholder: #a2b3aa;
+    --status-neutral-bg: #2a3830;
+    --status-neutral-text: #d5e0d9;
+    --status-success-bg: #173c2e;
+    --status-success-border: #368663;
+    --status-success-text: #a0e4bd;
+    --status-warning-bg: #44371c;
+    --status-warning-border: #8b6c2e;
+    --status-warning-text: #ffdc88;
+    --status-danger-bg: #472724;
+    --status-danger-border: #965048;
+    --status-danger-text: #ffb4aa;
+  }
+
+  :root:not([data-theme="light"]) .bg-hijau-aksen {
+    background-color: var(--hijau-tombol);
+  }
+
+  :root:not([data-theme="light"]) :is(.bg-red-50, .bg-red-100) {
+    background-color: var(--status-danger-bg);
+  }
+  :root:not([data-theme="light"]) :is(.border-red-200, .border-red-300, .border-red-400) {
+    border-color: var(--status-danger-border);
+  }
+  :root:not([data-theme="light"]) :is(.text-red-600, .text-red-700, .text-red-800) {
+    color: var(--status-danger-text);
+  }
+  :root:not([data-theme="light"]) :is(.bg-amber-50, .bg-amber-100, .bg-orange-50, .bg-orange-100) {
+    background-color: var(--status-warning-bg);
+  }
+  :root:not([data-theme="light"]) :is(.border-amber-200, .border-amber-300, .border-orange-300) {
+    border-color: var(--status-warning-border);
+  }
+  :root:not([data-theme="light"]) :is(.text-amber-500, .text-amber-600, .text-amber-700, .text-amber-800, .text-orange-800, .text-orange-900) {
+    color: var(--status-warning-text);
+  }
+  :root:not([data-theme="light"]) .bg-green-100 {
+    background-color: var(--status-success-bg);
+  }
+  :root:not([data-theme="light"]) :is(.border-green-400, .border-green-600) {
+    border-color: var(--status-success-border);
+  }
+  :root:not([data-theme="light"]) :is(.text-green-700, .text-green-800) {
+    color: var(--status-success-text);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--text-subtle);
+  --color-border: var(--line);
+  --color-gray-50: var(--surface-muted);
+  --color-gray-100: var(--surface-muted);
+  --color-gray-200: var(--line);
+  --color-gray-300: var(--line);
+  --color-gray-400: var(--text-subtle);
+  --color-gray-500: var(--text-muted);
+  --color-gray-600: var(--text-muted);
+  --color-gray-700: var(--foreground);
+  --color-gray-800: var(--foreground);
+  --color-gray-900: var(--foreground);
+  --color-gray-950: var(--foreground);
   --color-hijau-aksen: var(--hijau-aksen);
   --color-hijau-tombol: var(--hijau-tombol);
   --color-biru: var(--biru);
   --color-oranye: var(--oranye);
   --color-latar: var(--latar);
   --color-teks: var(--teks);
+  --color-emerald-600: var(--hijau-tombol);
+  --color-emerald-700: var(--hijau-aksen);
   --font-sans: var(--font-plus-jakarta-sans);
+}
+
+@layer utilities {
+  :root[data-theme="dark"] .bg-hijau-aksen {
+    background-color: var(--hijau-tombol);
+  }
+
+  :root[data-theme="dark"] :is(.bg-red-50, .bg-red-100) {
+    background-color: var(--status-danger-bg);
+  }
+
+  :root[data-theme="dark"] :is(.border-red-200, .border-red-300, .border-red-400) {
+    border-color: var(--status-danger-border);
+  }
+
+  :root[data-theme="dark"] :is(.text-red-600, .text-red-700, .text-red-800) {
+    color: var(--status-danger-text);
+  }
+
+  :root[data-theme="dark"] :is(.bg-amber-50, .bg-amber-100, .bg-orange-50, .bg-orange-100) {
+    background-color: var(--status-warning-bg);
+  }
+
+  :root[data-theme="dark"] :is(.border-amber-200, .border-amber-300, .border-orange-300) {
+    border-color: var(--status-warning-border);
+  }
+
+  :root[data-theme="dark"] :is(.text-amber-500, .text-amber-600, .text-amber-700, .text-amber-800, .text-orange-800, .text-orange-900) {
+    color: var(--status-warning-text);
+  }
+
+  :root[data-theme="dark"] :is(.bg-green-100) {
+    background-color: var(--status-success-bg);
+  }
+
+  :root[data-theme="dark"] :is(.border-green-400, .border-green-600) {
+    border-color: var(--status-success-border);
+  }
+
+  :root[data-theme="dark"] :is(.text-green-700, .text-green-800) {
+    color: var(--status-success-text);
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--line);
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    color: var(--foreground);
+    background-color: var(--surface);
+    border-color: var(--line);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--input-placeholder);
+  }
 }
 
 body {
