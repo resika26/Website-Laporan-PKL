@@ -23,8 +23,8 @@ export default async function ProjectSiswaPage() {
   return (
     <main className="p-6 max-w-2xl mx-auto space-y-6">
       <div className="flex items-center justify-between gap-3">
-        <Link href="/dashboard" className="text-sm text-blue-700">← Dashboard</Link>
-        <Link href="/galeri" className="text-sm text-blue-700">Galeri publik</Link>
+        <Link href="/dashboard" className="text-sm text-biru">← Dashboard</Link>
+        <Link href="/galeri" className="text-sm text-biru">Galeri publik</Link>
       </div>
       <header>
         <h1 className="text-xl font-bold">Project Saya</h1>
@@ -53,7 +53,7 @@ export default async function ProjectSiswaPage() {
                   Alasan revisi: {project.catatan}
                 </p>
               )}
-              {project.tautan && <a href={project.tautan} target="_blank" rel="noreferrer" className="text-sm text-blue-700 underline">Buka tautan project</a>}
+              {project.tautan && <a href={project.tautan} target="_blank" rel="noreferrer" className="text-sm text-biru underline">Buka tautan project</a>}
               <div className="flex flex-wrap gap-3">
                 {project.gambar.map((gambar, index) => {
                   const url = urlGambar.get(gambar.fileGambar);

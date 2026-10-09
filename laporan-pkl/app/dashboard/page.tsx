@@ -21,9 +21,9 @@ export default async function DashboardPage() {
         <div className="grid gap-3">
           <Link
             href="/siswa/jurnal"
-            className="block p-4 border rounded-xl hover:border-blue-500 hover:shadow-sm transition bg-white"
+            className="block p-4 border rounded-xl hover:border-hijau-aksen hover:shadow-sm transition bg-white"
           >
-            <div className="font-bold text-blue-600">Jurnal Harian</div>
+            <div className="font-bold text-hijau-aksen">Jurnal Harian</div>
             <p className="text-xs text-gray-500 mt-1">
               Isi dan lihat jurnal kegiatan PKL harian.
             </p>
@@ -31,9 +31,9 @@ export default async function DashboardPage() {
 
           <Link
             href="/siswa/project"
-            className="block p-4 border rounded-xl hover:border-blue-500 hover:shadow-sm transition bg-white"
+            className="block p-4 border rounded-xl hover:border-hijau-aksen hover:shadow-sm transition bg-white"
           >
-            <div className="font-bold text-blue-600">Project Saya</div>
+            <div className="font-bold text-hijau-aksen">Project Saya</div>
             <p className="text-xs text-gray-500 mt-1">
               Kirim project PKL untuk diperiksa sebelum tampil di galeri.
             </p>
@@ -41,9 +41,9 @@ export default async function DashboardPage() {
 
           <Link
             href="/dashboard/absen"
-            className="block p-4 border rounded-xl hover:border-blue-500 hover:shadow-sm transition bg-white"
+            className="block p-4 border rounded-xl hover:border-hijau-aksen hover:shadow-sm transition bg-white"
           >
-            <div className="font-bold text-blue-600">Absen Masuk & Pulang</div>
+            <div className="font-bold text-hijau-aksen">Absen Masuk & Pulang</div>
             <p className="text-xs text-gray-500 mt-1">
               Ambil foto langsung kamera dan verifikasi lokasi GPS tempat PKL.
             </p>

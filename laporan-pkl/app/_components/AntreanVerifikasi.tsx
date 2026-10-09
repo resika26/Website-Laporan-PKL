@@ -146,14 +146,14 @@ export default async function AntreanVerifikasi({
                       Masuk {jam(item.jamMasuk)}
                       {jarakMasuk != null && ` · ${jarakMasuk} m dari lokasi`}
                       {item.latMasuk != null && item.lngMasuk != null && (
-                        <> · <a className="text-blue-600" target="_blank" rel="noreferrer" href={`https://www.google.com/maps?q=${item.latMasuk},${item.lngMasuk}`}>Peta masuk</a></>
+                        <> · <a className="text-biru" target="_blank" rel="noreferrer" href={`https://www.google.com/maps?q=${item.latMasuk},${item.lngMasuk}`}>Peta masuk</a></>
                       )}
                     </p>
                     <p>
                       Pulang {jam(item.jamPulang)}
                       {jarakPulang != null && ` · ${jarakPulang} m dari lokasi`}
                       {item.latPulang != null && item.lngPulang != null && (
-                        <> · <a className="text-blue-600" target="_blank" rel="noreferrer" href={`https://www.google.com/maps?q=${item.latPulang},${item.lngPulang}`}>Peta pulang</a></>
+                        <> · <a className="text-biru" target="_blank" rel="noreferrer" href={`https://www.google.com/maps?q=${item.latPulang},${item.lngPulang}`}>Peta pulang</a></>
                       )}
                     </p>
                     <div className="flex gap-3 flex-wrap">

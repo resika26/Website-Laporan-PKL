@@ -34,7 +34,7 @@ export default async function AntreanProjectGuru({ userId }: { userId: string })
             </p>
           )}
           {project.deskripsi && <p className="whitespace-pre-wrap">{project.deskripsi}</p>}
-          {project.tautan && <a href={project.tautan} target="_blank" rel="noreferrer" className="text-blue-700 underline">Buka tautan project</a>}
+          {project.tautan && <a href={project.tautan} target="_blank" rel="noreferrer" className="text-biru underline">Buka tautan project</a>}
           <div className="flex flex-wrap gap-3">
             {project.gambar.map((gambar, index) => {
               const url = urlGambar.get(gambar.fileGambar);

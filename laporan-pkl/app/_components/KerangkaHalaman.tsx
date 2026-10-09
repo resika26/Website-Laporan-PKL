@@ -19,7 +19,7 @@ export default function KerangkaHalaman({
     <div className="min-h-screen flex flex-col">
       <header className="border-b bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:gap-5">
-          <Link href={tujuanMerek} className="shrink-0 text-base font-bold text-gray-950">
+          <Link href={tujuanMerek} className="shrink-0 text-base font-bold text-hijau-aksen">
             Laporan PKL Digital
           </Link>
           <div className="min-w-0 flex-1">

@@ -16,7 +16,7 @@ export default async function HalamanIzinSakit() {
   if (!penempatan) {
     return (
       <main className="p-6 max-w-md mx-auto space-y-4">
-        <Link href="/dashboard" className="text-sm text-blue-600 hover:underline">
+        <Link href="/dashboard" className="text-sm text-biru hover:underline">
           ← Dashboard
         </Link>
         <p className="text-red-600 text-sm border border-red-200 bg-red-50 rounded-xl p-3">
@@ -44,7 +44,7 @@ export default async function HalamanIzinSakit() {
   return (
     <main className="p-6 max-w-md mx-auto space-y-4">
       <div className="flex items-center justify-between border-b pb-3">
-        <Link href="/dashboard" className="text-sm text-blue-600 hover:underline">
+        <Link href="/dashboard" className="text-sm text-biru hover:underline">
           ← Dashboard
         </Link>
         <span className="text-sm font-semibold text-gray-700">Izin &amp; Sakit</span>

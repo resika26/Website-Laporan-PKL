@@ -35,7 +35,7 @@ export default async function JurnalFormPage({ params }: { params: Promise<{ tan
 
   return (
     <main className="p-6 max-w-xl mx-auto space-y-4">
-      <Link href="/siswa/jurnal" className="text-sm text-blue-600">← Kembali</Link>
+      <Link href="/siswa/jurnal" className="text-sm text-biru">← Kembali</Link>
       <h1 className="text-xl font-bold">Jurnal {judul}</h1>
 
       {bukanHadir ? (

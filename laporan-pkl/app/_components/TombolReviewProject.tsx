@@ -41,7 +41,7 @@ export default function TombolReviewProject({ id }: { id: string }) {
             type="button"
             onClick={() => proses("setuju")}
             disabled={sibuk}
-            className="bg-green-700 text-white rounded px-3 py-1.5 text-sm disabled:opacity-50"
+            className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-3 py-1.5 text-sm disabled:opacity-50"
           >
             {sibuk ? "Memproses..." : "Setujui"}
           </button>

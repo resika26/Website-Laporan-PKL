@@ -59,7 +59,7 @@ export default function GaleriProject({ projects }: { projects: ItemGaleri[] }) 
                   ) : null
                 ))}
               </div>
-              {project.tautan && <a href={project.tautan} target="_blank" rel="noreferrer" className="inline-block text-sm text-blue-700 underline">Lihat project</a>}
+              {project.tautan && <a href={project.tautan} target="_blank" rel="noreferrer" className="inline-block text-sm text-biru underline">Lihat project</a>}
             </article>
           ))}
         </div>

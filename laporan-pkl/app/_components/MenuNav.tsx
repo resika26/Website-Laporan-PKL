@@ -21,7 +21,7 @@ export default function MenuNav({ peran }: { peran?: PeranAplikasi }) {
             key={item.href}
             href={item.href}
             aria-current={dipilih ? "page" : undefined}
-            className={`${ui.menuItem} ${dipilih ? "bg-gray-100 font-semibold text-gray-950" : "text-gray-600 hover:bg-gray-50 hover:text-gray-950"}`}
+            className={`${ui.menuItem} ${dipilih ? "bg-hijau-aksen font-semibold text-white" : "text-gray-600 hover:bg-gray-50 hover:text-hijau-aksen"}`}
           >
             {item.label}
           </Link>

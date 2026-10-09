@@ -201,7 +201,7 @@ export default function HalamanAbsenSiswa() {
   return (
     <main className="max-w-md mx-auto p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <Link href="/dashboard" className="text-sm text-blue-600 hover:underline">
+        <Link href="/dashboard" className="text-sm text-biru hover:underline">
           ← Dashboard
         </Link>
         <span className="text-xs text-gray-500">
@@ -257,7 +257,7 @@ export default function HalamanAbsenSiswa() {
               </div>
               <div>
                 <b>Status Persetujuan:</b>{" "}
-                <span className="font-semibold text-blue-700">
+                <span className="font-semibold text-biru">
                   {LABEL_STATUS[statusHariIni.absensi.status]?.teks ?? statusHariIni.absensi.status}
                 </span>
               </div>
@@ -309,7 +309,7 @@ export default function HalamanAbsenSiswa() {
         ) : (
           <button
             onClick={ambilFoto}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm font-semibold"
+            className="px-4 py-2 bg-hijau-tombol hover:bg-hijau-aksen text-white rounded text-sm font-semibold"
           >
             Ambil Foto
           </button>
@@ -326,14 +326,14 @@ export default function HalamanAbsenSiswa() {
         <button
           onClick={() => kirimAbsen("masuk")}
           disabled={loading || !foto || !lokasi || sudahMasuk || tidakBisaAbsen}
-          className="py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+          className="py-3 bg-hijau-tombol hover:bg-hijau-aksen text-white rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Proses..." : sudahMasuk ? "Sudah Masuk" : "Absen Masuk"}
         </button>
         <button
           onClick={() => kirimAbsen("pulang")}
           disabled={loading || !foto || !lokasi || !sudahMasuk || sudahPulang || tidakBisaAbsen}
-          className="py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+          className="py-3 bg-hijau-tombol hover:bg-hijau-aksen text-white rounded-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Proses..." : sudahPulang ? "Sudah Pulang" : "Absen Pulang"}
         </button>

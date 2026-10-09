@@ -67,7 +67,7 @@ export default async function KelolaPenggunaPage({
 
   return (
     <main className="p-6 max-w-3xl mx-auto space-y-6">
-      <a href="/admin" className="text-sm text-blue-600">← Kembali</a>
+      <a href="/admin" className="text-sm text-biru">← Kembali</a>
       <h1 className="text-xl font-bold">Kelola Akun</h1>
 
       {pesan && <p className="border rounded p-3 text-sm">{pesan}</p>}
@@ -92,7 +92,7 @@ export default async function KelolaPenggunaPage({
           <input name="noHp" placeholder="No HP (opsional)" className="w-full border rounded p-2" />
         </fieldset>
 
-        <button type="submit" className="bg-blue-600 text-white rounded px-4 py-2">Buat akun</button>
+        <button type="submit" className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-4 py-2">Buat akun</button>
       </form>
 
       <section className="space-y-2">

@@ -30,7 +30,7 @@ export default async function LoginPage({
         {error && <p className="text-red-600 text-sm">Email atau kata sandi salah.</p>}
         <input name="email" type="email" placeholder="Email" required className="w-full border rounded p-2" />
         <input name="password" type="password" placeholder="Kata sandi" required className="w-full border rounded p-2" />
-        <button type="submit" className="w-full bg-blue-600 text-white rounded p-2">Masuk</button>
+        <button type="submit" className="w-full bg-hijau-tombol hover:bg-hijau-aksen text-white rounded p-2">Masuk</button>
       </form>
     </main>
   );

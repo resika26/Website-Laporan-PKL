@@ -35,7 +35,7 @@ export default async function JurnalListPage() {
 
   return (
     <main className="p-6 max-w-xl mx-auto space-y-6">
-      <Link href="/siswa" className="text-sm text-blue-600">← Kembali</Link>
+      <Link href="/siswa" className="text-sm text-biru">← Kembali</Link>
       <h1 className="text-xl font-bold">Jurnal Harian</h1>
 
       <section className="space-y-2">
@@ -46,7 +46,7 @@ export default async function JurnalListPage() {
         {perluDiisi.map((a) => (
           <Link key={a.id} href={`/siswa/jurnal/${kunciTgl(a.tanggal)}`} className="block border rounded p-3 text-sm hover:bg-gray-50">
             <b>{tgl(a.tanggal)}</b>
-            <div className="text-blue-600">Isi jurnal →</div>
+            <div className="text-biru">Isi jurnal →</div>
           </Link>
         ))}
       </section>

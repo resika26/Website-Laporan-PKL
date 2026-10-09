@@ -46,7 +46,7 @@ export default function TombolKeputusan({
             type="button"
             onClick={() => kirim("setuju")}
             disabled={sibuk}
-            className="bg-green-600 text-white rounded px-4 py-1.5 text-sm disabled:opacity-50"
+            className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-4 py-1.5 text-sm disabled:opacity-50"
           >
             {sibuk ? "Memproses..." : "Setujui"}
           </button>

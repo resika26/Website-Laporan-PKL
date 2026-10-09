@@ -65,7 +65,7 @@ export default async function PenempatanPage({
 
   return (
     <main className="p-6 max-w-3xl mx-auto space-y-6">
-      <a href="/admin" className="text-sm text-blue-600">← Kembali</a>
+      <a href="/admin" className="text-sm text-biru">← Kembali</a>
       <h1 className="text-xl font-bold">Penempatan PKL</h1>
       {pesan && <p className="border rounded p-3 text-sm">{pesan}</p>}
 
@@ -93,7 +93,7 @@ export default async function PenempatanPage({
         <label className="block text-sm">Tanggal selesai
           <input name="selesai" type="date" required className={kelas} />
         </label>
-        <button type="submit" className="bg-blue-600 text-white rounded px-4 py-2">Simpan penempatan</button>
+        <button type="submit" className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-4 py-2">Simpan penempatan</button>
       </form>
 
       <section className="space-y-2">

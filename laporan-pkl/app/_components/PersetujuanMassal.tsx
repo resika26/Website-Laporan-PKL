@@ -100,7 +100,7 @@ export default function PersetujuanMassal({ items }: { items: Item[] }) {
           type="button"
           onClick={setujuiPilihan}
           disabled={sibuk || pilihan.length === 0}
-          className="bg-green-700 text-white rounded px-3 py-1.5 text-sm disabled:opacity-50"
+          className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-3 py-1.5 text-sm disabled:opacity-50"
         >
           {sibuk ? "Memproses..." : `Setujui pilihan (${pilihan.length})`}
         </button>

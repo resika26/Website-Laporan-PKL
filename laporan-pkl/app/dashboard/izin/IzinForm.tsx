@@ -84,7 +84,7 @@ export default function IzinForm() {
         <button
           onClick={kirim}
           disabled={sibuk}
-          className="bg-blue-600 text-white rounded px-4 py-2 disabled:opacity-50"
+          className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-4 py-2 disabled:opacity-50"
         >
           {sibuk ? "Mengirim..." : "Kirim"}
         </button>
