@@ -100,6 +100,7 @@ model TempatPkl {
   latitude     Float
   longitude    Float
   radiusMeter  Int    @default(200) // batas jarak absen yang dianggap sah
+  hariKerja    Int[]  @default([1, 2, 3, 4, 5]) // 0 = Minggu, 1 = Senin, ... 6 = Sabtu
 
   penempatan Penempatan[]
   hariLibur  HariLibur[]

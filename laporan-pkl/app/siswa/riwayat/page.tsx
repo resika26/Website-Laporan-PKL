@@ -2,7 +2,8 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { adalahAkhirPekan, hariIniUtc, kunciTanggal } from "@/lib/rekap";
+import { hariIniUtc, kunciTanggal } from "@/lib/rekap";
+import { hariKerjaDariDb } from "@/lib/hariKerja";
 
 const fmtBulan = new Intl.DateTimeFormat("id-ID", {
   month: "long",
@@ -31,7 +32,9 @@ export default async function RiwayatPage({
   if (!pengguna) redirect("/login");
 
   const penempatan = await prisma.penempatan.findFirst({
-    where: { siswaId: pengguna.id },
+       where: { siswaId: pengguna.id },
+       include: { tempatPkl: true },
+     });
   });
 
   if (!penempatan) {
@@ -105,7 +108,8 @@ export default async function RiwayatPage({
 
   const rekam = new Map(absensi.map((a) => [kunciTanggal(a.tanggal), a]));
   const liburSet = new Set(libur.map((l) => kunciTanggal(l.tanggal)));
-  const kunciHariIni = kunciTanggal(hariIni);
+       const kunciHariIni = kunciTanggal(hariIni);
+     const hariKerja = hariKerjaDariDb(penempatan.tempatPkl.hariKerja);
 
   let jumlahHadir = 0;
   let jumlahIzin = 0;
@@ -123,7 +127,7 @@ export default async function RiwayatPage({
       d.getTime() >= penempatan.tanggalMulai.getTime() &&
       d.getTime() <= penempatan.tanggalSelesai.getTime();
     const a = rekam.get(kunci);
-    const hariLibur = adalahAkhirPekan(d) || liburSet.has(kunci);
+    const hariLibur = !hariKerja.includes(d.getUTCDay()) || liburSet.has(kunci);
 
     let kelas = "border bg-surface";
     let huruf = "";

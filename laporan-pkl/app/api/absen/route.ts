@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { supabaseAdmin, BUCKET_ABSEN } from "@/lib/supabase";
 import { jarakMeter } from "@/lib/lokasi";
 import { hariIniWIB } from "@/lib/tanggal";
+import { hariKerjaDariDb } from "@/lib/hariKerja";
 
 const tolak = (pesan: string, status = 400) =>
   NextResponse.json({ ok: false, pesan }, { status });
@@ -37,8 +38,9 @@ export async function POST(req: Request) {
   if (tanggal < penempatan.tanggalMulai || tanggal > penempatan.tanggalSelesai)
     return tolak("Hari ini di luar periode PKL kamu.");
 
-  const hari = tanggal.getUTCDay(); // 0 = Minggu, 6 = Sabtu
-  if (hari === 0 || hari === 6) return tolak("Hari ini akhir pekan.");
+     const hari = tanggal.getUTCDay(); // 0 = Minggu, 6 = Sabtu
+     const hariKerja = hariKerjaDariDb(penempatan.tempatPkl.hariKerja);
+     if (!hariKerja.includes(hari)) return tolak("Hari ini bukan hari kerja di DU/DI kamu.");
 
   const libur = await prisma.hariLibur.findFirst({
     where: {
@@ -126,8 +128,8 @@ export async function GET() {
 
   const { tanggal, teks } = hariIniWIB();
   const diLuarPeriode = tanggal < penempatan.tanggalMulai || tanggal > penempatan.tanggalSelesai;
-  const hari = tanggal.getUTCDay();
-  const akhirPekan = hari === 0 || hari === 6;
+   const hari = tanggal.getUTCDay();
+   const akhirPekan = !hariKerjaDariDb(penempatan.tempatPkl.hariKerja).includes(hari);
 
   const libur = await prisma.hariLibur.findFirst({
     where: {

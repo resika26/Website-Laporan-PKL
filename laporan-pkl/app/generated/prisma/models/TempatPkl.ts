@@ -30,12 +30,14 @@ export type TempatPklAvgAggregateOutputType = {
   latitude: number | null
   longitude: number | null
   radiusMeter: number | null
+  hariKerja: number | null
 }
 
 export type TempatPklSumAggregateOutputType = {
   latitude: number | null
   longitude: number | null
   radiusMeter: number | null
+  hariKerja: number[]
 }
 
 export type TempatPklMinAggregateOutputType = {
@@ -63,6 +65,7 @@ export type TempatPklCountAggregateOutputType = {
   latitude: number
   longitude: number
   radiusMeter: number
+  hariKerja: number
   _all: number
 }
 
@@ -71,12 +74,14 @@ export type TempatPklAvgAggregateInputType = {
   latitude?: true
   longitude?: true
   radiusMeter?: true
+  hariKerja?: true
 }
 
 export type TempatPklSumAggregateInputType = {
   latitude?: true
   longitude?: true
   radiusMeter?: true
+  hariKerja?: true
 }
 
 export type TempatPklMinAggregateInputType = {
@@ -104,6 +109,7 @@ export type TempatPklCountAggregateInputType = {
   latitude?: true
   longitude?: true
   radiusMeter?: true
+  hariKerja?: true
   _all?: true
 }
 
@@ -200,6 +206,7 @@ export type TempatPklGroupByOutputType = {
   latitude: number
   longitude: number
   radiusMeter: number
+  hariKerja: number[]
   _count: TempatPklCountAggregateOutputType | null
   _avg: TempatPklAvgAggregateOutputType | null
   _sum: TempatPklSumAggregateOutputType | null
@@ -232,6 +239,7 @@ export type TempatPklWhereInput = {
   latitude?: Prisma.FloatFilter<"TempatPkl"> | number
   longitude?: Prisma.FloatFilter<"TempatPkl"> | number
   radiusMeter?: Prisma.IntFilter<"TempatPkl"> | number
+  hariKerja?: Prisma.IntNullableListFilter<"TempatPkl">
   penempatan?: Prisma.PenempatanListRelationFilter
   hariLibur?: Prisma.HariLiburListRelationFilter
 }
@@ -243,6 +251,7 @@ export type TempatPklOrderByWithRelationInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   radiusMeter?: Prisma.SortOrder
+  hariKerja?: Prisma.SortOrder
   penempatan?: Prisma.PenempatanOrderByRelationAggregateInput
   hariLibur?: Prisma.HariLiburOrderByRelationAggregateInput
 }
@@ -257,6 +266,7 @@ export type TempatPklWhereUniqueInput = Prisma.AtLeast<{
   latitude?: Prisma.FloatFilter<"TempatPkl"> | number
   longitude?: Prisma.FloatFilter<"TempatPkl"> | number
   radiusMeter?: Prisma.IntFilter<"TempatPkl"> | number
+  hariKerja?: Prisma.IntNullableListFilter<"TempatPkl">
   penempatan?: Prisma.PenempatanListRelationFilter
   hariLibur?: Prisma.HariLiburListRelationFilter
 }, "id">
@@ -268,6 +278,7 @@ export type TempatPklOrderByWithAggregationInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   radiusMeter?: Prisma.SortOrder
+  hariKerja?: Prisma.SortOrder
   _count?: Prisma.TempatPklCountOrderByAggregateInput
   _avg?: Prisma.TempatPklAvgOrderByAggregateInput
   _max?: Prisma.TempatPklMaxOrderByAggregateInput
@@ -285,6 +296,7 @@ export type TempatPklScalarWhereWithAggregatesInput = {
   latitude?: Prisma.FloatWithAggregatesFilter<"TempatPkl"> | number
   longitude?: Prisma.FloatWithAggregatesFilter<"TempatPkl"> | number
   radiusMeter?: Prisma.IntWithAggregatesFilter<"TempatPkl"> | number
+  hariKerja?: Prisma.IntNullableListFilter<"TempatPkl">
 }
 
 export type TempatPklCreateInput = {
@@ -294,6 +306,7 @@ export type TempatPklCreateInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanCreateNestedManyWithoutTempatPklInput
   hariLibur?: Prisma.HariLiburCreateNestedManyWithoutTempatPklInput
 }
@@ -305,6 +318,7 @@ export type TempatPklUncheckedCreateInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanUncheckedCreateNestedManyWithoutTempatPklInput
   hariLibur?: Prisma.HariLiburUncheckedCreateNestedManyWithoutTempatPklInput
 }
@@ -316,6 +330,7 @@ export type TempatPklUpdateInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanUpdateManyWithoutTempatPklNestedInput
   hariLibur?: Prisma.HariLiburUpdateManyWithoutTempatPklNestedInput
 }
@@ -327,6 +342,7 @@ export type TempatPklUncheckedUpdateInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanUncheckedUpdateManyWithoutTempatPklNestedInput
   hariLibur?: Prisma.HariLiburUncheckedUpdateManyWithoutTempatPklNestedInput
 }
@@ -338,6 +354,7 @@ export type TempatPklCreateManyInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
 }
 
 export type TempatPklUpdateManyMutationInput = {
@@ -347,6 +364,7 @@ export type TempatPklUpdateManyMutationInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
 }
 
 export type TempatPklUncheckedUpdateManyInput = {
@@ -356,6 +374,15 @@ export type TempatPklUncheckedUpdateManyInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
+}
+
+export type IntNullableListFilter<$PrismaModel = never> = {
+  equals?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  has?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  hasEvery?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  hasSome?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type TempatPklCountOrderByAggregateInput = {
@@ -365,12 +392,14 @@ export type TempatPklCountOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   radiusMeter?: Prisma.SortOrder
+  hariKerja?: Prisma.SortOrder
 }
 
 export type TempatPklAvgOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   radiusMeter?: Prisma.SortOrder
+  hariKerja?: Prisma.SortOrder
 }
 
 export type TempatPklMaxOrderByAggregateInput = {
@@ -395,6 +424,7 @@ export type TempatPklSumOrderByAggregateInput = {
   latitude?: Prisma.SortOrder
   longitude?: Prisma.SortOrder
   radiusMeter?: Prisma.SortOrder
+  hariKerja?: Prisma.SortOrder
 }
 
 export type TempatPklScalarRelationFilter = {
@@ -405,6 +435,10 @@ export type TempatPklScalarRelationFilter = {
 export type TempatPklNullableScalarRelationFilter = {
   is?: Prisma.TempatPklWhereInput | null
   isNot?: Prisma.TempatPklWhereInput | null
+}
+
+export type TempatPklCreatehariKerjaInput = {
+  set: number[]
 }
 
 export type FloatFieldUpdateOperationsInput = {
@@ -421,6 +455,11 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type TempatPklUpdatehariKerjaInput = {
+  set?: number[]
+  push?: number | number[]
 }
 
 export type TempatPklCreateNestedOneWithoutPenempatanInput = {
@@ -460,6 +499,7 @@ export type TempatPklCreateWithoutPenempatanInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
   hariLibur?: Prisma.HariLiburCreateNestedManyWithoutTempatPklInput
 }
 
@@ -470,6 +510,7 @@ export type TempatPklUncheckedCreateWithoutPenempatanInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
   hariLibur?: Prisma.HariLiburUncheckedCreateNestedManyWithoutTempatPklInput
 }
 
@@ -496,6 +537,7 @@ export type TempatPklUpdateWithoutPenempatanInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
   hariLibur?: Prisma.HariLiburUpdateManyWithoutTempatPklNestedInput
 }
 
@@ -506,6 +548,7 @@ export type TempatPklUncheckedUpdateWithoutPenempatanInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
   hariLibur?: Prisma.HariLiburUncheckedUpdateManyWithoutTempatPklNestedInput
 }
 
@@ -516,6 +559,7 @@ export type TempatPklCreateWithoutHariLiburInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanCreateNestedManyWithoutTempatPklInput
 }
 
@@ -526,6 +570,7 @@ export type TempatPklUncheckedCreateWithoutHariLiburInput = {
   latitude: number
   longitude: number
   radiusMeter?: number
+  hariKerja?: Prisma.TempatPklCreatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanUncheckedCreateNestedManyWithoutTempatPklInput
 }
 
@@ -552,6 +597,7 @@ export type TempatPklUpdateWithoutHariLiburInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanUpdateManyWithoutTempatPklNestedInput
 }
 
@@ -562,6 +608,7 @@ export type TempatPklUncheckedUpdateWithoutHariLiburInput = {
   latitude?: Prisma.FloatFieldUpdateOperationsInput | number
   longitude?: Prisma.FloatFieldUpdateOperationsInput | number
   radiusMeter?: Prisma.IntFieldUpdateOperationsInput | number
+  hariKerja?: Prisma.TempatPklUpdatehariKerjaInput | number[]
   penempatan?: Prisma.PenempatanUncheckedUpdateManyWithoutTempatPklNestedInput
 }
 
@@ -612,6 +659,7 @@ export type TempatPklSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   latitude?: boolean
   longitude?: boolean
   radiusMeter?: boolean
+  hariKerja?: boolean
   penempatan?: boolean | Prisma.TempatPkl$penempatanArgs<ExtArgs>
   hariLibur?: boolean | Prisma.TempatPkl$hariLiburArgs<ExtArgs>
   _count?: boolean | Prisma.TempatPklCountOutputTypeDefaultArgs<ExtArgs>
@@ -624,6 +672,7 @@ export type TempatPklSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   latitude?: boolean
   longitude?: boolean
   radiusMeter?: boolean
+  hariKerja?: boolean
 }, ExtArgs["result"]["tempatPkl"]>
 
 export type TempatPklSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -633,6 +682,7 @@ export type TempatPklSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   latitude?: boolean
   longitude?: boolean
   radiusMeter?: boolean
+  hariKerja?: boolean
 }, ExtArgs["result"]["tempatPkl"]>
 
 export type TempatPklSelectScalar = {
@@ -642,9 +692,10 @@ export type TempatPklSelectScalar = {
   latitude?: boolean
   longitude?: boolean
   radiusMeter?: boolean
+  hariKerja?: boolean
 }
 
-export type TempatPklOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nama" | "alamat" | "latitude" | "longitude" | "radiusMeter", ExtArgs["result"]["tempatPkl"]>
+export type TempatPklOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nama" | "alamat" | "latitude" | "longitude" | "radiusMeter" | "hariKerja", ExtArgs["result"]["tempatPkl"]>
 export type TempatPklInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   penempatan?: boolean | Prisma.TempatPkl$penempatanArgs<ExtArgs>
   hariLibur?: boolean | Prisma.TempatPkl$hariLiburArgs<ExtArgs>
@@ -666,6 +717,7 @@ export type $TempatPklPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     latitude: number
     longitude: number
     radiusMeter: number
+    hariKerja: number[]
   }, ExtArgs["result"]["tempatPkl"]>
   composites: {}
 }
@@ -1097,6 +1149,7 @@ export interface TempatPklFieldRefs {
   readonly latitude: Prisma.FieldRef<"TempatPkl", 'Float'>
   readonly longitude: Prisma.FieldRef<"TempatPkl", 'Float'>
   readonly radiusMeter: Prisma.FieldRef<"TempatPkl", 'Int'>
+  readonly hariKerja: Prisma.FieldRef<"TempatPkl", 'Int[]'>
 }
     
 

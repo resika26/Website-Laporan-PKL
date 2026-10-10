@@ -2,7 +2,8 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { adalahAkhirPekan, hariIniUtc, hitungProgress, kunciTanggal } from "@/lib/rekap";
+import { hariIniUtc, hitungProgress, kunciTanggal } from "@/lib/rekap";
+import { hariKerjaDariDb } from "@/lib/hariKerja";
 
 const fmtTanggalPanjang = new Intl.DateTimeFormat("id-ID", {
   weekday: "long",
@@ -139,19 +140,21 @@ export default async function DashboardPage() {
   const jumlahHadir = absensi.filter((a) => a.jenis === "HADIR" && a.status !== "DITOLAK").length;
   const jurnalTerkirim = jurnal.filter((j) => j.status !== "DRAF").length;
 
-  const progres = hitungProgress({
-    mulai: penempatan.tanggalMulai,
-    selesai: penempatan.tanggalSelesai,
-    hariIni,
-    libur: liburSet,
-    jumlahHadir,
-  });
+  const hariKerja = hariKerjaDariDb(penempatan.tempatPkl.hariKerja);
+     const progres = hitungProgress({
+       mulai: penempatan.tanggalMulai,
+       selesai: penempatan.tanggalSelesai,
+       hariIni,
+       libur: liburSet,
+       jumlahHadir,
+       hariKerja,
+     });
 
   const dalamPeriode =
     hariIni.getTime() >= penempatan.tanggalMulai.getTime() &&
     hariIni.getTime() <= penempatan.tanggalSelesai.getTime();
   const belumMulai = hariIni.getTime() < penempatan.tanggalMulai.getTime();
-  const hariLibur = adalahAkhirPekan(hariIni) || liburSet.has(kunciHariIni);
+  const hariLibur = !hariKerja.includes(hariIni.getUTCDay()) || liburSet.has(kunciHariIni);
 
   const absenHariIni = absensi.find((a) => kunciTanggal(a.tanggal) === kunciHariIni);
   const jurnalHariIni = jurnal.find((j) => kunciTanggal(j.tanggal) === kunciHariIni);

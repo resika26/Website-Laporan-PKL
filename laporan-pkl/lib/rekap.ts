@@ -1,5 +1,7 @@
+import { HARI_KERJA_AWAL } from "@/lib/hariKerja";
+
 // Hitungan progres PKL untuk beranda siswa.
-// Hari kerja sementara dianggap Senin sampai Jumat, dikurangi hari libur.
+// Hari kerja ikut pengaturan DU/DI, dikurangi hari libur.
 
 const MS_HARI = 24 * 60 * 60 * 1000;
 
@@ -20,11 +22,17 @@ export function adalahAkhirPekan(d: Date): boolean {
 }
 
 /** Jumlah hari kerja dari tanggal mulai sampai selesai (keduanya ikut dihitung). */
-export function hitungHariKerja(mulai: Date, selesai: Date, libur: Set<string>): number {
+export function hitungHariKerja(
+  mulai: Date,
+  selesai: Date,
+  libur: Set<string>,
+  hariKerja: number[] = HARI_KERJA_AWAL
+): number {
+  const aktif = new Set(hariKerja);
   let jumlah = 0;
   for (let t = mulai.getTime(); t <= selesai.getTime(); t += MS_HARI) {
     const d = new Date(t);
-    if (!adalahAkhirPekan(d) && !libur.has(kunciTanggal(d))) jumlah++;
+    if (aktif.has(d.getUTCDay()) && !libur.has(kunciTanggal(d))) jumlah++;
   }
   return jumlah;
 }
@@ -43,15 +51,16 @@ export function hitungProgress(args: {
   hariIni: Date;
   libur: Set<string>;
   jumlahHadir: number;
+  hariKerja?: number[];
 }): RingkasanProgress {
-  const { mulai, selesai, hariIni, libur, jumlahHadir } = args;
+  const { mulai, selesai, hariIni, libur, jumlahHadir, hariKerja } = args;
 
-  const totalHariKerja = hitungHariKerja(mulai, selesai, libur);
+  const totalHariKerja = hitungHariKerja(mulai, selesai, libur, hariKerja);
 
   let hariBerjalan = 0;
   if (hariIni.getTime() >= mulai.getTime()) {
     const batas = hariIni.getTime() < selesai.getTime() ? hariIni : selesai;
-    hariBerjalan = hitungHariKerja(mulai, batas, libur);
+    hariBerjalan = hitungHariKerja(mulai, batas, libur, hariKerja);
   }
 
   const sisaHari = Math.max(totalHariKerja - hariBerjalan, 0);

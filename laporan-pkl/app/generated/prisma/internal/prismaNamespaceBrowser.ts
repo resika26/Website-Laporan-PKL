@@ -110,7 +110,8 @@ export const TempatPklScalarFieldEnum = {
   alamat: 'alamat',
   latitude: 'latitude',
   longitude: 'longitude',
-  radiusMeter: 'radiusMeter'
+  radiusMeter: 'radiusMeter',
+  hariKerja: 'hariKerja'
 } as const
 
 export type TempatPklScalarFieldEnum = (typeof TempatPklScalarFieldEnum)[keyof typeof TempatPklScalarFieldEnum]

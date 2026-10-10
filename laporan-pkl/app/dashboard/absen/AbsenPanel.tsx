@@ -291,7 +291,7 @@ export default function AbsenPanel({ nama }: { nama: string }) {
             <div className="font-semibold text-amber-700">Hari ini libur: {statusHariIni.libur}</div>
           )}
           {statusHariIni?.akhirPekan && (
-            <div className="font-semibold text-amber-700">Hari ini akhir pekan (bukan hari kerja).</div>
+            <div className="font-semibold text-amber-700">Hari ini bukan hari kerja di DU/DI kamu.</div>
           )}
           {statusHariIni?.diLuarPeriode && (
             <div className="font-semibold text-red-600">
