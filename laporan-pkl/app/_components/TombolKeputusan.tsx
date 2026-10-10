@@ -39,14 +39,14 @@ export default function TombolKeputusan({
   }
 
   return (
-    <div className="space-y-2 pt-2">
+    <div className="space-y-2 pt-1">
       {!formTolak ? (
-        <div className="flex gap-2">
+        <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
             onClick={() => kirim("setuju")}
             disabled={sibuk}
-            className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-4 py-1.5 text-sm disabled:opacity-50"
+            className="rounded-xl bg-hijau-tombol py-3.5 text-base font-bold text-white hover:bg-hijau-aksen disabled:opacity-50"
           >
             {sibuk ? "Memproses..." : "Setujui"}
           </button>
@@ -54,27 +54,30 @@ export default function TombolKeputusan({
             type="button"
             onClick={() => setFormTolak(true)}
             disabled={sibuk}
-            className="border border-red-400 text-red-600 rounded px-4 py-1.5 text-sm"
+            className="rounded-xl border-2 border-red-500 py-3.5 text-base font-bold text-red-600 disabled:opacity-50"
           >
             Tolak
           </button>
         </div>
       ) : (
-        <div className="space-y-2">
-          <textarea
-            value={catatan}
-            onChange={(e) => setCatatan(e.target.value)}
-            rows={2}
-            maxLength={500}
-            placeholder="Alasan penolakan (wajib, minimal 5 karakter)"
-            className="w-full border rounded p-2 text-sm"
-          />
-          <div className="flex gap-2">
+        <div className="space-y-3 rounded-xl border-2 border-red-300 p-3">
+          <label className="block text-sm font-semibold">
+            Alasan penolakan
+            <textarea
+              value={catatan}
+              onChange={(e) => setCatatan(e.target.value)}
+              rows={3}
+              maxLength={500}
+              placeholder="Wajib diisi, minimal 5 karakter"
+              className="mt-1 w-full rounded-lg border bg-surface p-2.5 text-base font-normal focus:outline-none focus:ring-2 focus:ring-red-400"
+            />
+          </label>
+          <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
               onClick={() => kirim("tolak")}
               disabled={sibuk}
-              className="bg-red-600 text-white rounded px-4 py-1.5 text-sm disabled:opacity-50"
+              className="rounded-xl bg-red-600 py-3.5 text-base font-bold text-white disabled:opacity-50"
             >
               {sibuk ? "Memproses..." : "Kirim penolakan"}
             </button>
@@ -82,14 +85,16 @@ export default function TombolKeputusan({
               type="button"
               onClick={() => setFormTolak(false)}
               disabled={sibuk}
-              className="border rounded px-4 py-1.5 text-sm"
+              className="rounded-xl border py-3.5 text-base font-semibold"
             >
               Batal
             </button>
           </div>
         </div>
       )}
-      {pesan && <p className="text-sm text-red-600">{pesan}</p>}
+      {pesan && (
+        <p className="rounded-lg border border-red-400 bg-red-100 p-2.5 text-sm text-red-700">{pesan}</p>
+      )}
     </div>
   );
 }
