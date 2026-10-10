@@ -325,8 +325,11 @@ export default async function DashboardPage() {
         )}
       </section>
 
-      {/* Menu cepat */}
-      <section className="grid grid-cols-3 gap-2 text-center text-sm font-semibold">
+         {/* Menu cepat */}
+      <section className="grid grid-cols-2 gap-2 text-center text-sm font-semibold sm:grid-cols-4">
+        <Link href="/siswa/riwayat" className="rounded-xl border bg-surface p-3 text-hijau-aksen hover:border-hijau-aksen">
+          Riwayat
+        </Link>
         <Link href="/siswa/jurnal" className="rounded-xl border bg-surface p-3 text-hijau-aksen hover:border-hijau-aksen">
           Jurnal
         </Link>
