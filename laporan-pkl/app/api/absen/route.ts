@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { supabaseAdmin, BUCKET_ABSEN } from "@/lib/supabase";
 import { jarakMeter } from "@/lib/lokasi";
 import { hariIniWIB } from "@/lib/tanggal";
+import { beriCap } from "@/lib/capFoto";
 import { hariKerjaDariDb } from "@/lib/hariKerja";
 
 const tolak = (pesan: string, status = 400) =>
@@ -69,18 +70,31 @@ export async function POST(req: Request) {
       return tolak("Absen kamu sudah diperiksa dan tidak bisa diubah lagi.");
   }
 
-  // 7. Simpan foto ke storage (privat)
+      // 7. Beri cap (nama, jam server, jarak) lalu simpan foto ke storage (privat)
+  const sekarang = new Date(); // satu jam yang sama untuk cap dan database
+  const fotoAsli = Buffer.from(await foto.arrayBuffer());
+  let fotoSimpan: Buffer = fotoAsli;
+  try {
+    fotoSimpan = await beriCap(fotoAsli, {
+      nama: session.user.name ?? "Siswa",
+      waktu: sekarang,
+      keterangan: `Absen ${jenis} · ${Math.round(jarak)} m dari ${penempatan.tempatPkl.nama}`,
+    });
+  } catch (e) {
+    // Kalau cap gagal, absen tetap diproses dengan foto asli
+    console.error("Cap foto gagal, foto asli yang disimpan:", e);
+  }
+
   const path = `${penempatan.id}/${teks}-${jenis}.jpg`;
   const { error: errUpload } = await supabaseAdmin.storage
     .from(BUCKET_ABSEN)
-    .upload(path, Buffer.from(await foto.arrayBuffer()), {
+    .upload(path, fotoSimpan, {
       contentType: "image/jpeg",
       upsert: false,
     });
   if (errUpload) return tolak("Gagal menyimpan foto. Coba lagi.", 500);
 
   // 8. Simpan ke database (jam dari server)
-  const sekarang = new Date();
   try {
     if (jenis === "masuk") {
       await prisma.absensi.create({

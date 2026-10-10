@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Pastikan file font untuk cap foto ikut terbawa saat deploy ke Vercel
+  outputFileTracingIncludes: {
+    "/api/absen": ["./lib/fonts/**/*"],
+  },
 };
 
 export default nextConfig;

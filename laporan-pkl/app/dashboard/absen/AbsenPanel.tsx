@@ -375,7 +375,7 @@ export default function AbsenPanel({ nama }: { nama: string }) {
         </div>
       </div>
       <p className="text-center text-xs text-muted">
-        Teks di atas hanya tampilan, belum tercetak di foto. Jam resmi absen memakai jam server.
+        Nama, jam server, dan jarak akan dicetak otomatis di foto saat absen dikirim.
       </p>
 
       {pratinjau ? (
