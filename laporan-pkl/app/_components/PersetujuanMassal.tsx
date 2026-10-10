@@ -64,47 +64,57 @@ export default function PersetujuanMassal({ items }: { items: Item[] }) {
   if (items.length === 0) return null;
 
   return (
-    <fieldset className="border rounded p-3 space-y-2">
-      <legend className="px-1 text-sm font-semibold">Persetujuan massal</legend>
-      <p className="text-xs text-gray-600">
+    <fieldset className="space-y-3 rounded-2xl border bg-surface p-4">
+      <legend className="px-1 text-sm font-bold">Persetujuan massal</legend>
+      <p className="text-xs text-muted">
         Pilih item tahap Pembimbing sekolah yang akan disetujui. Maksimal 100 item per proses.
       </p>
       {items.length > ditampilkan.length && (
-        <p className="text-xs text-amber-800">Daftar pilihan menampilkan 100 item pertama; sisanya dapat diproses pada batch berikutnya.</p>
+        <p className="text-xs text-amber-700">
+          Daftar pilihan menampilkan 100 item pertama; sisanya dapat diproses pada batch berikutnya.
+        </p>
       )}
-      <label className="flex items-center gap-2 text-sm">
+      <label className="flex items-center gap-2 text-sm font-semibold">
         <input
           type="checkbox"
           checked={ditampilkan.every((item) => terpilih.has(kunciItem(item)))}
           onChange={pilihSemua}
           disabled={sibuk}
+          className="h-4 w-4"
         />
         Pilih semua yang ditampilkan
       </label>
-      <div className="max-h-56 overflow-y-auto divide-y">
+      <div className="max-h-56 divide-y overflow-y-auto rounded-xl border">
         {ditampilkan.map((item) => (
-          <label key={kunciItem(item)} className="flex items-center gap-2 py-2 text-sm">
+          <label key={kunciItem(item)} className="flex items-center gap-2 px-3 py-2 text-sm">
             <input
               type="checkbox"
               checked={terpilih.has(kunciItem(item))}
               onChange={(e) => pilih(item, e.target.checked)}
               disabled={sibuk}
+              className="h-4 w-4"
             />
             <span className="min-w-0 flex-1 truncate">{item.siswa}</span>
-            <span className="text-gray-500">{item.tipe === "absensi" ? "Absen" : "Jurnal"} · {item.tanggal}</span>
+            <span className="text-muted">
+              {item.tipe === "absensi" ? "Absen" : "Jurnal"} · {item.tanggal}
+            </span>
           </label>
         ))}
       </div>
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <button
           type="button"
           onClick={setujuiPilihan}
           disabled={sibuk || pilihan.length === 0}
-          className="bg-hijau-tombol hover:bg-hijau-aksen text-white rounded px-3 py-1.5 text-sm disabled:opacity-50"
+          className="rounded-xl bg-hijau-tombol px-4 py-2 text-sm font-bold text-white hover:bg-hijau-aksen disabled:opacity-50"
         >
           {sibuk ? "Memproses..." : `Setujui pilihan (${pilihan.length})`}
         </button>
-        {pesan && <p role="status" className="text-sm text-gray-700">{pesan}</p>}
+        {pesan && (
+          <p role="status" className="text-sm">
+            {pesan}
+          </p>
+        )}
       </div>
     </fieldset>
   );
