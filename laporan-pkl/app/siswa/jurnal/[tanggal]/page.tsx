@@ -34,29 +34,69 @@ export default async function JurnalFormPage({ params }: { params: Promise<{ tan
   const bisaEdit = !jurnal || jurnal.status === "DRAF" || jurnal.status === "DITOLAK";
 
   return (
-    <main className="p-6 max-w-xl mx-auto space-y-4">
-      <Link href="/siswa/jurnal" className="text-sm text-biru">← Kembali</Link>
-      <h1 className="text-xl font-bold">Jurnal {judul}</h1>
+    <main className="mx-auto max-w-2xl space-y-4 p-4">
+      <Link href="/siswa/jurnal" className="text-sm font-semibold text-biru hover:underline">
+        ← Kembali
+      </Link>
+
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h1 className="text-xl font-bold">Jurnal {judul}</h1>
+        {jurnal && (
+          <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${LABEL_STATUS[jurnal.status].kelas}`}>
+            {LABEL_STATUS[jurnal.status].teks}
+          </span>
+        )}
+      </div>
 
       {bukanHadir ? (
-        <p className="border rounded p-4">Absen masuk dulu di tanggal ini sebelum mengisi jurnal.</p>
+        <p className="rounded-2xl border bg-surface p-4 text-sm">
+          Absen masuk dulu di tanggal ini sebelum mengisi jurnal.
+        </p>
       ) : !bisaEdit && jurnal ? (
-        <div className="border rounded-xl p-4 space-y-3 text-sm">
+        <div className="space-y-4 rounded-2xl border bg-surface p-4 text-sm">
+          <p className="text-muted">Jurnal ini terkunci dan tidak bisa diubah.</p>
+          <div>
+            <b>Kegiatan</b>
+            <p className="mt-1 whitespace-pre-wrap">{jurnal.kegiatan}</p>
+          </div>
+          {jurnal.kendala && (
+            <div>
+              <b>Kendala</b>
+              <p className="mt-1 whitespace-pre-wrap">{jurnal.kendala}</p>
+            </div>
+          )}
+          {jurnal.pelajaran && (
+            <div>
+              <b>Pelajaran</b>
+              <p className="mt-1 whitespace-pre-wrap">{jurnal.pelajaran}</p>
+            </div>
+          )}
+          <div>
+            <b>Keahlian</b>
+            <div className="mt-1.5 flex flex-wrap gap-2">
+              {jurnal.keahlian.length === 0 && <span className="text-muted">-</span>}
+              {jurnal.keahlian.map((k) => (
+                <span
+                  key={k.keahlian.nama}
+                  className="rounded-full bg-hijau-tombol px-3 py-1 text-xs font-semibold text-white"
+                >
+                  {k.keahlian.nama}
+                </span>
+              ))}
+            </div>
+          </div>
           <p>
-            Status: <b>{LABEL_STATUS[jurnal.status].teks}</b> (terkunci, tidak bisa diubah)
+            <b>Foto lampiran:</b> {jurnal.lampiran.length}
           </p>
-          <div><b>Kegiatan</b><p className="whitespace-pre-wrap">{jurnal.kegiatan}</p></div>
-          {jurnal.kendala && <div><b>Kendala</b><p className="whitespace-pre-wrap">{jurnal.kendala}</p></div>}
-          {jurnal.pelajaran && <div><b>Pelajaran</b><p className="whitespace-pre-wrap">{jurnal.pelajaran}</p></div>}
-          <p>Keahlian: {jurnal.keahlian.map((k) => k.keahlian.nama).join(", ") || "-"}</p>
-          <p>Foto lampiran: {jurnal.lampiran.length}</p>
         </div>
       ) : (
         <>
           {jurnal?.status === "DITOLAK" && jurnal.catatanRevisi && (
-            <p className="border border-red-300 bg-red-50 text-red-700 rounded p-3 text-sm">
-              Perlu revisi: {jurnal.catatanRevisi}
-            </p>
+            <div className="rounded-2xl border-2 border-red-400 bg-red-100 p-4 text-sm text-red-700">
+              <p className="font-bold">Perlu revisi dari pembimbing</p>
+              <p className="mt-1 whitespace-pre-wrap">{jurnal.catatanRevisi}</p>
+              <p className="mt-2 text-xs">Perbaiki jurnal di bawah, lalu kirim ulang.</p>
+            </div>
           )}
           <JurnalForm
             tanggal={teks}
