@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import TombolKeluar from "./TombolKeluar";
 import MenuNav from "./MenuNav";
 import PemilihTema from "./PemilihTema";
+import PitaBatik from "./PitaBatik";
 import { MENU_PERAN, type PeranAplikasi } from "./navigasi";
 
 export default function KerangkaHalaman({
@@ -20,6 +21,7 @@ export default function KerangkaHalaman({
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b bg-surface">
+        <PitaBatik tinggi={8} />
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:gap-5">
           <Link href={tujuanMerek} className="flex shrink-0 items-center gap-2 text-base font-bold text-hijau-aksen">
             <Image
