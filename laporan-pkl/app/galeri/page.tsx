@@ -12,7 +12,7 @@ export default async function GaleriPage() {
 
   const projects = await prisma.project.findMany({
     where: { status: "TAMPIL", rahasiaPerusahaan: false },
-    include: { siswa: true, gambar: true },
+    include: { siswa: { include: { profilSiswa: true } }, gambar: true },
     orderBy: { dibuatPada: "desc" },
   });
   const urlGambar = await urlGambarProject(projects.flatMap((project) => project.gambar.map((item) => item.fileGambar)));
@@ -22,8 +22,11 @@ export default async function GaleriPage() {
       peran={session?.user.peran as PeranAplikasi | undefined}
       nama={session?.user.name}
     >
-      <main className="p-6 max-w-5xl mx-auto space-y-5">
-        <h1 className="text-xl font-bold">Galeri Project PKL</h1>
+      <main className="mx-auto max-w-6xl space-y-4 p-4">
+        <div>
+          <h1 className="text-xl font-bold">Galeri Project PKL</h1>
+          <p className="mt-1 text-sm text-muted">Hasil karya siswa SMK Negeri 1 Pacitan selama PKL.</p>
+        </div>
         <GaleriProject
           projects={projects.map((project) => ({
             id: project.id,
@@ -31,6 +34,7 @@ export default async function GaleriPage() {
             deskripsi: project.deskripsi,
             tautan: project.tautan,
             siswa: project.siswa.nama,
+            paket: project.siswa.profilSiswa?.jurusan ?? null,
             gambar: project.gambar.map((gambar) => ({
               id: gambar.id,
               url: urlGambar.get(gambar.fileGambar) ?? null,
