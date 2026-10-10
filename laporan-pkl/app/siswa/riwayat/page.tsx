@@ -35,7 +35,6 @@ export default async function RiwayatPage({
        where: { siswaId: pengguna.id },
        include: { tempatPkl: true },
      });
-  });
 
   if (!penempatan) {
     return (

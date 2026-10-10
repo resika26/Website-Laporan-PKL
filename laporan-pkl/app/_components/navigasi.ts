@@ -28,6 +28,7 @@ export const MENU_PERAN: Record<PeranAplikasi, ItemMenu[]> = {
     { label: "Kelola akun", href: "/admin/pengguna" },
     { label: "DU/DI", href: "/admin/tempat-pkl" },
     { label: "Penempatan", href: "/admin/penempatan" },
+    { label: "Hari libur", href: "/admin/hari-libur" },
     { label: "Galeri", href: "/galeri" },
   ],
 };

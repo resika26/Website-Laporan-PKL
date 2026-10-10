@@ -23,8 +23,9 @@ export default async function AdminPage() {
 
   const menu = [
     { href: "/admin/pengguna", judul: "Kelola akun", isi: "Buat dan cari akun siswa, pembimbing, dan admin." },
-    { href: "/admin/tempat-pkl", judul: "DU/DI", isi: "Atur tempat PKL, lokasi, dan radius absen." },
+    { href: "/admin/tempat-pkl", judul: "DU/DI", isi: "Atur tempat PKL, lokasi, radius, dan hari kerja." },
     { href: "/admin/penempatan", judul: "Penempatan", isi: "Hubungkan siswa dengan DU/DI dan pembimbingnya." },
+    { href: "/admin/hari-libur", judul: "Hari libur", isi: "Catat hari libur supaya siswa tidak dihitung alpa." },
   ];
 
   return (
@@ -43,7 +44,7 @@ export default async function AdminPage() {
         ))}
       </section>
 
-      <section className="grid gap-3 sm:grid-cols-3">
+      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {menu.map((m) => (
           <Link
             key={m.href}
