@@ -29,15 +29,15 @@ export default async function LoginPage({
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background p-4 pb-16">
       {/* Foto gedung sebagai latar, dibuat samar */}
-      <Image
-        src="/brand/gedung-sekolah.png"
-        alt=""
-        fill
-        sizes="100vw"
-        quality={60}
-        priority
-        className="object-cover"
-      />
+     <Image
+  src="/brand/gedung-sekolah.png"
+  alt=""
+  fill
+  sizes="100vw"
+  priority
+  className="object-cover"
+/>
+      /
       <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
 
       <div className="absolute right-4 top-4 z-10">

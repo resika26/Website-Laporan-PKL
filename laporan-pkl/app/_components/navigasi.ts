@@ -16,15 +16,15 @@ export const MENU_PERAN: Record<PeranAplikasi, ItemMenu[]> = {
     { label: "Galeri", href: "/galeri" },
   ],
   GURU: [
-    { label: "Dashboard Pembimbing sekolah", href: "/guru" },
+    { label: "Verifikasi", href: "/guru" },
     { label: "Galeri", href: "/galeri" },
   ],
   SUPERVISOR: [
-    { label: "Dashboard Pembimbing DU/DI", href: "/supervisor" },
+    { label: "Verifikasi", href: "/supervisor" },
     { label: "Galeri", href: "/galeri" },
   ],
   ADMIN: [
-    { label: "Dashboard Admin", href: "/admin" },
+    { label: "Dashboard", href: "/admin" },
     { label: "Kelola akun", href: "/admin/pengguna" },
     { label: "DU/DI", href: "/admin/tempat-pkl" },
     { label: "Penempatan", href: "/admin/penempatan" },
