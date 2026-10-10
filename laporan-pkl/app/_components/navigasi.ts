@@ -9,6 +9,7 @@ export const MENU_PERAN: Record<PeranAplikasi, ItemMenu[]> = {
   SISWA: [
     { label: "Dashboard", href: "/dashboard" },
     { label: "Absen", href: "/dashboard/absen" },
+    { label: "Riwayat", href: "/siswa/riwayat" },
     { label: "Izin & Sakit", href: "/dashboard/izin" },
     { label: "Jurnal", href: "/siswa/jurnal" },
     { label: "Project Saya", href: "/siswa/project" },
